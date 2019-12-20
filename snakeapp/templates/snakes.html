@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <h1>Table of Snakes</h1>
+    <div class="col-12 col-sm-10">
+        {% if messages %}
+        {% for message in messages%}
+        <div class="alert alert-primary" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+         <table id="table_id" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Color or Pattern</th>
+                    <th>Favourite Prey</th>
+                    <th>Region</th>
+                    <th>Venomous</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if snakes.count == 0 %}
+                <tr>
+                    <td colspan="4" class="text-center">You currently have no snakes!</td>
+                </tr>
+                {% else %}
+                {% for snake in snakes %}
+                <tr>
+                    <td>{{ snake.name }}</td>
+                    <td>{{ snake.description }}</td>
+                    <td>{{ snake.color }}</td>
+                    <td>{{ snake.prey }}</td>
+                    <td>{{ snake.region }}</td>
+                    <td>{{ snake.venomous }}</td>
+                    <td>
+                        <a href="{% url 'edit-snake' snake.id %}" class="btn btn-primary btn-sm">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'login-base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+       <h1>Register</h1>
+       <form action="{% url 'appRegister' %}" method="POST">
+           {% csrf_token %}
+           {{ register_form.as_p }}
+           <button class="btn btn-primary">Register</button>
+       </form>
+    </div>
+</div>
+
+{% endblock content %}
